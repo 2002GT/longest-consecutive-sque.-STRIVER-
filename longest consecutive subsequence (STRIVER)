@@ -1,0 +1,84 @@
+// #include <bits/stdc++.h>
+
+// using namespace std;
+
+// // --------------LONGEST CONSECUTIVE SUBSEQUENCE ----------------------
+// //   arr=[2 100 200 3 4 5]
+// //   0/p=[1 2 3 4 5]
+  
+  
+//   int long_consec_seq(vector<int>arr){
+//       set<int>hashset;
+//     //   int n = arr.size();
+      
+//     //   iterate---
+//     for(int i:arr){
+//         hashset.insert(i);
+//     }
+    
+//     int long_length = 0;
+//       for(int i:arr){
+//           if(!hashset.count(i-1)){
+//               int current_len = 1;
+//               int current_ele = i;
+         
+//          while(hashset.count(current_ele+1))  {
+//               current_len+=1;
+//               current_ele+=1;
+//          }   
+//           long_length = max(current_ele,long_length);
+              
+//           }
+//       }
+      
+//       return long_length;
+      
+//   }
+
+//  int main()
+//  {
+//      vector<int>arr = {100,200,1,2,3,4};
+//      cout<<long_consec_seq(arr);
+ 
+    
+
+//     return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+
+using namespace std;
+int longestConsecutive(vector < int > & nums) {
+  set < int > hashSet;
+  for (int num: nums) {
+    hashSet.insert(num);
+  }
+
+  int longestStreak = 0;
+
+  for (int num: nums) {
+    if (!hashSet.count(num - 1)) {
+      int currentNum = num;
+      int currentStreak = 1;
+
+      while (hashSet.count(currentNum + 1)) {
+        currentNum += 1;
+        currentStreak += 1;
+      }
+
+      longestStreak = max(longestStreak, currentStreak);
+    }
+  }
+
+  return longestStreak;
+}
+int main() {
+  vector<int> arr{100,200,1,2,3,4};
+  int lon = longestConsecutive(arr);
+  cout << "The longest consecutive sequence is " << lon << endl;
+
+}
+
+
